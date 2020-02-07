@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Users</title>
+</head>
+
+<body>
+  <p><a href="/">Menu</a></p>
+  <h1>Users</h1>
+  <ul>
+    {{#each users}}
+      <li>Name: {{name}}&emsp; Email: {{email}}&emsp; {{#if erapaiva}}  Erapaiva: {{erapaiva}} {{/if}}{{#unless erapaiva}}Has not paid{{/unless}}&emsp; <button onclick="sendDelete('{{name}}')">DELETE</button> &emsp; {{#if role}} <button onclick="makeAdmin('{{name}}')">Make Admin</button>{{/if}}</li>
+    {{/each}}
+  </ul>
+  <form action="/users/change" method="post">
+    Target Username<input type="text" name="target"><br>
+    New Username: <input type="text" name="user_name"><br>
+    New Email: <input type="text" name="email"><br>
+    New Password: <input type="password" name="new_password"><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+<script>
+    function sendDelete(target){
+      var xhttp = new XMLHttpRequest();
+        //callback is a simple refresh if evrything goes well
+        xhttp.onreadystatechange = function()
+        {
+          if (xhttp.readyState == 4)
+          {
+            if(xhttp.status == 202){
+              location.reload(); // refreshing the page puts us at front page
+            }
+            else
+            {
+              console.log("Error with code" + xhttp.status);
+            }
+          }
+        };
+        xhttp.open("DELETE", "/users/", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send(`target=${target}`);
+    }
+    
+    function makeAdmin(target){
+      var xhttp = new XMLHttpRequest();
+        //callback is a simple refresh if evrything goes well
+        xhttp.onreadystatechange = function()
+        {
+          if (xhttp.readyState == 4)
+          {
+            if(xhttp.status == 200){
+              location.reload(); // refreshing the page puts us at front page
+            }
+            else
+            {
+              console.log("Error with code" + xhttp.status);
+            }
+          }
+        };
+        xhttp.open("POST", "/users/admin", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send(`target=${target}`);
+    }
+</script>
+</html>

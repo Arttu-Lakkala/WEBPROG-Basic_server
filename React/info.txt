@@ -1,0 +1,10 @@
+POST to http://localhost:3000/api/login with raw json body content as {"name" : "name","password": "name"} returns token on a succesfull login
+POST to e.g. http://localhost:3000/api/create with raw json body content as {"name" : "name","password": "name", "email: email@email.com} creates a user and returns it if succescful
+
+/all api functions past this requier a valid json token
+
+GET to http://localhost:3000/api/info With a valid JSON token returns either data of all user or the data of the user in question depending on token
+POST to e.g. http://localhost:3000/api/users/5c629f130a78457bf89bdfca with raw json body content as {"name" : "name","password": "name", "email: email@email.com} modifies the user of the given id param with the values given returns the new user
+Delete toe.g. http://localhost:3000/api/users/5c629f130a78457bf89bdfca deletes the user based on ID
+POST to e.g. http://localhost:3000/api/admin/5c629f130a78457bf89bdfca Upgrades the user given in the id to an admin
+POST to e.g. http://localhost:3000/api/payment/5c629f130a78457bf89bdfca Makes a payment equvalent to a month to the given user

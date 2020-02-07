@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>User info</title>
+</head>
+
+<body>
+  <p><a href="/">Menu</a></p>
+  <h1>Info</h1>
+  <ul>
+      <li>Name: {{user.name}}</li>
+      <li>Email: {{user.email}}</li>
+  </ul>
+  
+  
+  <h1>Change your information</h1>
+  
+  <form action="/users/change" method="post">
+    New Username: <input type="text" value="{{user.name}}" name="user_name"><br>
+    New Email: <input type="text" value="{{user.email}}" name="email"><br>
+    New Password: <input type="password" name="new_password"><br>
+    <input type="hidden" value="{{user.name}}" name="target"><br>
+    Enter current password to confirm changes<br>
+    <input type="password" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
+  <br>
+  <h1>Remove your account</h1>
+  <br>
+  <font size="25">
+  <a href="/users/" onclick="sendDelete(event)">DELETE</a>
+  </font>
+  
+</body>
+<script>
+    function sendDelete(event){
+        var xhttp = new XMLHttpRequest();
+        event.preventDefault();
+        //callback is a simple refresh if evrything goes well
+        xhttp.onreadystatechange = function()
+        {
+          if (xhttp.readyState == 4)
+          {
+            if(xhttp.status == 202){
+              location.reload(); // refreshing the page puts us at front page
+            }
+            else
+            {
+              console.log("Error with code" + xhttp.status);
+            }
+          }
+        };
+        xhttp.open("DELETE", "/users/", true);
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.send("target={{user.name}}");
+    }
+  </script>
+</html>

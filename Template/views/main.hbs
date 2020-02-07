@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+  <p><a href="/logout">Log out</a></p>
+  <p><a href="/users">User</a></p>
+  {{#if role}}
+  <p><a href="/payments">Membership</a></p>
+  {{/if}}
+  {{#unless date}}
+  <p>
+  <font size="30">
+    Your membership is out of date!
+  </font>
+  <p>
+  {{/unless}}
+  
+</html>

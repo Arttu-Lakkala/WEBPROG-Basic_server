@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Payment</title>
+</head>
+
+<body>
+  <p><a href="/">Menu</a></p>
+  <h1>Payment</h1>
+  {{#if date}}
+  <p>
+  The last day of your membership&nbsp{{#if member}}is{{/if}}{{#unless member}}was{{/unless}}&nbsp{{date}}
+  </p>    
+  {{/if}}
+  {{member}}
+  
+  <h1>Pay for a month of membership</h1>
+  <!--Simulated form for paying for a month of membership-->
+  <form action="/payments/payment" method="post">
+    <input type="hidden" value="{{member}}"name="member">
+    <input type="hidden" value="{{name}}" name="target">
+    <input type="number" name="card"><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>

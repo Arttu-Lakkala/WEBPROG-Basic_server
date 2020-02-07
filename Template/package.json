@@ -1,0 +1,22 @@
+{
+  "name": "tepmlate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "express-hbs": "^2.1.2",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "helmet": "^3.16.0",
+    "mongoose": "^5.5.5",
+    "node-datetime": "^2.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arttu Lakkala",
+  "license": "ISC"
+}
